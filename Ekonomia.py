@@ -1,3 +1,6 @@
+debug_code = True
+
+#
 def procent_skladany_roczny():
     print("\n" * 30)
     print("""Procent składany z kapitalizacją roczną 
@@ -18,6 +21,60 @@ def procent_skladany_kapitalizacja_miedzyokresowa():
     return kapital_poczatkowy * (1 + ((oprocentowanie_roczne / 100)/liczba_rocznych_kapitalizacji)) ** (ile_lat*liczba_rocznych_kapitalizacji)
 
 
+
+def transpozycja_macierzy_kwadratowej(macierz):
+    # debug code
+    #print(macierz)
+    macierz_T = []
+    
+    kolumna_T = 0
+    for row in range (0, len(macierz)):
+        macierz_T.append([])
+        for column in range (0, len(macierz)):
+            # debug code
+            #print(f"kolumna : {column} rząd : {row} wartość : {macierz[column][row]}")
+            macierz_T[kolumna_T].append(macierz[column][row])
+        kolumna_T += 1
+
+    return(macierz_T)
+
+
+
+def mnożenie_macierzy_kwadratowych(macierz_A, macierz_B):
+    #mnoży się pierwszy rząd przez pierwszą kolumnę potem mnoży się  pierwszy rząd przez drugą kolumnę potem 3 rząd przz 3 kolumnę
+    #potem drugi wiersz przez pierwszą kolumnę i tak do końca...
+    
+    rows_A = []
+    columns_B = []
+
+    for row in range(0, len(macierz_A)):
+        columns_B.append([])
+        for column in range(0, len(macierz_A)):
+            if debug_code == True:
+                print(macierz_B[column][row])
+            columns_B[row].append(macierz_B[column][row])
+
+
+    for column in range(0, len(macierz_A)):
+        rows_A.append([])
+        for row in range(0, len(macierz_A)):
+            if debug_code == True:
+                print(macierz_A[column][row])
+            rows_A[column].append(macierz_A[column][row])
+        
+    wynik = []
+    
+    for wynik_row in range(0, len(macierz_A)):
+        wynik.append([])
+        for wynik_column in range(0, len(macierz_A)):
+            suma = 0
+            for pozycja in range(0, len(macierz_A)):
+                suma += rows_A[wynik_row][pozycja]*columns_B[wynik_column][pozycja]
+            wynik[wynik_row].append(suma)
+            
+    return wynik
+    
+
 def main():
     x = 1
     print("\n" * 30)
@@ -27,6 +84,7 @@ def main():
 
         1) Procent składany z kapitalizacją roczną
         2) Procent składany z kapitalizacją między okresową
+        3) Prognozowanie ekonometryczne
         0) Wyjście
 
         """)
@@ -39,6 +97,16 @@ def main():
         elif x == 2:
             print("\n" * 30)
             print(procent_skladany_kapitalizacja_miedzyokresowa())
+        elif x == 3:
+            print("\n" * 30)
+            #macierz = [[1,2,3,4,1],[5,6,7,8,1],[9,10,11,12,1],[13,14,15,16,1],[1,2,3,4,5]]
+            #print(transpozycja_macierzy_kwadratowej(macierz))
+            macierz_A = [[-1,-2,3],[0,2,-1],[-1,3,0]]
+            macierz_B = [[1,5,1],[2,1,2],[3,2,3]]
+            
+            print(mnożenie_macierzy_kwadratowych(macierz_A,macierz_B))
+        
+
         else :
             return
         
