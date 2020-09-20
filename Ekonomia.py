@@ -23,8 +23,9 @@ def procent_skladany_kapitalizacja_miedzyokresowa():
 
 
 def transpozycja_macierzy_kwadratowej(macierz):
-    # debug code
-    #print(macierz)
+    # funkcja zwraca macirz transponowaną
+    
+
     macierz_T = []
     
     kolumna_T = 0
@@ -41,9 +42,11 @@ def transpozycja_macierzy_kwadratowej(macierz):
 
 
 def mnożenie_macierzy_kwadratowych(macierz_A, macierz_B):
-    #mnoży się pierwszy rząd przez pierwszą kolumnę potem mnoży się  pierwszy rząd przez drugą kolumnę potem 3 rząd przz 3 kolumnę
-    #potem drugi wiersz przez pierwszą kolumnę i tak do końca...
+    # mnoży się pierwszy rząd przez pierwszą kolumnę potem mnoży się  pierwszy rząd przez drugą kolumnę potem 3 rząd przz 3 kolumnę
+    # potem drugi wiersz przez pierwszą kolumnę i tak do końca...
+    # funkcja nie obsługuje macirzy prostokątnych
     
+
     rows_A = []
     columns_B = []
 
@@ -99,16 +102,28 @@ def main():
             print(procent_skladany_kapitalizacja_miedzyokresowa())
         elif x == 3:
             print("\n" * 30)
+            # metoda najmniejszych kwadratów jest dobrze opowiedziana na poniższym linku:
+            # https://www.youtube.com/watch?v=N2Dzck8TmxY&list=WL&index=60&t=31s
+            # y = a1x1 + a2x2 + a0
+            # z poniższego wzoru a jest macirzą z współczynnikami alfa od góry alfa0, alfa1 itd...
+            # a = (XtX)^(-1)*(XtY)
+
+            # do programu trzeba wprowadzić macirz y zawierającą wyniki z x lat
+            y = [3,3.5,5,4,3,4.5,6,5.5,4,7]
+            # trzeba też wprowadzić x1,x2
+            x = [[2,7],[2.5],[4,10],[3.5,8],[3,15],]
+
+
+
             #macierz = [[1,2,3,4,1],[5,6,7,8,1],[9,10,11,12,1],[13,14,15,16,1],[1,2,3,4,5]]
             #print(transpozycja_macierzy_kwadratowej(macierz))
-            macierz_A = [[-1,-2,3],[0,2,-1],[-1,3,0]]
-            macierz_B = [[1,5,1],[2,1,2],[3,2,3]]
-            
-            print(mnożenie_macierzy_kwadratowych(macierz_A,macierz_B))
+            # macierz_A = [[-1,-2,3],[0,2,-1],[-1,3,0]]
+            # macierz_B = [[1,5,1],[2,1,2],[3,2,3]]
+            # print(mnożenie_macierzy_kwadratowych(macierz_A,macierz_B))
         
 
         else :
-            return
+            pass
         
 main()
 
